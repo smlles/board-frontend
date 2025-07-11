@@ -1,18 +1,48 @@
 // Auth.jsx
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import AuthForm from "./Form";
 import "../../../styles/auth.css";
 import { form } from "../../../constants/form";
-import Button from "../../common/Button/Button";
+import ToggleButton from "../../common/Button/ToggleButton";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+
 
 const Auth = () => {
-
+  const navigate  = useNavigate();
+  const location  = useLocation();
   // formType = login | register | findId | findPw
   const [formType, setFormType] = useState("login");
+    const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    username: ""
+  });
 
-  const toggleAuth = () =>
-    setFormType((prev) => (prev === "login" ? "register" : "login"));
+  const toggleAuth = () =>{
+    
+   const next = formType === 'login' ? 'register' : 'login'
+    navigate(`/${next}`);  
+  }   
   const toggle = (type) => setFormType(type);
+
+   const pathType  = location.pathname.split('/')[1];   // 'login' or 'register'
+  
+   useEffect(() => {
+    // formType 바뀔 때마다 폼 초기화
+    setFormData({
+      email: "",
+      password: "",
+      username: ""
+    });
+  }, [formType]);
+
+  useEffect(() => {
+    if (pathType && pathType !== formType) setFormType(pathType);
+  }, [pathType]);
+
+
+
 
   return (
       <AuthForm formType={formType}>
@@ -20,9 +50,9 @@ const Auth = () => {
             <button className="blue-btn">
                {formType.includes("find") ? form["send"] : form[formType]}
             </button>
-          <Button type={formType} toggle={toggleAuth} >
+          <ToggleButton type="button" toggle={toggleAuth} >
              {formType ==="login" ? form["register"] :form["cancle"]}
-          </Button>
+          </ToggleButton>
         </div>
         {formType === "login" && (
           <div className="footer">

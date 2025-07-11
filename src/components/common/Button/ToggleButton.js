@@ -3,7 +3,7 @@
 
 
 
-const Button=({className,type,name,disabled,children , onClick})=>{
+const Button=({className,type,name,disabled,children , toggle})=>{
 
     // const navigate=useNavigate();
 
@@ -23,7 +23,7 @@ const Button=({className,type,name,disabled,children , onClick})=>{
             className={className}
             type={type}
             name={name}
-            onClick={onClick}  
+            onClick={toggle}  
             disabled={disabled}
         >
         {children}

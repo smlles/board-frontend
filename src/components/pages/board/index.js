@@ -1,4 +1,7 @@
 import { useNavigate } from "react-router-dom";
+import Button from "../../common/Button/Button";
+import { useDispatch } from "react-redux";
+import store, { logout } from "../../../store";
 
 export const post = [
   {
@@ -38,50 +41,53 @@ export const post = [
   },
 ];
 
+const Board = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-const Board=()=>{
-const navigate = useNavigate();
+  const logoutHandler = () => {
+   
+    dispatch(logout());
+   
+    
+  };
 
-    return(
-        <div>
-            <h2>게시판</h2>
+  return (
+    <div>
+      <h2>게시판</h2>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>번호</th>
-                        <th>제목</th>
-                        <th>작성자</th>
-                        <th>작성일</th>
-                        <th>조회</th>
-                </tr>
-               </thead>
-               <tbody>
-             
-                {post.map((post)=>
-                  <tr>
-                    <td>{post.id}</td>
-                     <td onClick={()=>navigate(`/post/${post.id}`)}>{post.title}</td>
-                    <td>{post.author}</td>
-                    <td>{post.date}</td>
-                    <td>{post.views}</td>
-                 </tr>
-                )}
-                    {/* <td>게시글 map 돌리기</td> */}
-              
-               </tbody>
-            </table>
-        </div>
-    )
-}
-
-
-
-
-
-
-
-
-
+      <table>
+        <thead>
+          <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+            <th>조회</th>
+          </tr>
+        </thead>
+        <tbody>
+          {post.map((item) => (
+            <tr key={item.id}>
+              <td>{item.id}</td>
+              <td
+                onClick={() => navigate(`/post/${item.id}`)}
+                style={{ cursor: "pointer" }}
+              >
+                {item.title}
+              </td>
+              <td>{item.author}</td>
+              <td>{item.date}</td>
+              <td>{item.views}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <Button type="button" onClick={logoutHandler}>
+        로그아웃
+      </Button>
+    </div>
+  );
+};
 
 export default Board;

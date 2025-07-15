@@ -243,6 +243,41 @@
         max-width: 90%;
     }
 
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      flex-wrap: wrap; /* 작은 화면에서 줄바꿈 */
+    }
+
+    .pagination button,
+    .pagination select {
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #fff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .pagination button:hover:not(:disabled),
+    .pagination select:hover {
+      background-color: #f0f0f0;
+    }
+
+    .pagination button.active {
+      background-color: #3498db;
+      color: white;
+      border-color: #3498db;
+    }
+
+    .pagination button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
     .board-container h2,
     .post-detail-container .post-title,
     .write-post-container h1 {

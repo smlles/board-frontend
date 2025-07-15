@@ -78,7 +78,11 @@ const AuthForm = ({ formType, children }) => {
     } catch (err) {
       console.error(err);
       console.error("Login failed:", err.response?.status, err.response?.data);
-      alert('요청 실패!');
+      let errorMessage = '요청 실패! 다시 시도해주세요.';
+      if (err.response?.status === 401) {
+        errorMessage = '아이디 또는 비밀번호가 잘못되었습니다.';
+      }
+      alert(errorMessage);
     }
   }
 };
@@ -123,11 +127,11 @@ const AuthForm = ({ formType, children }) => {
         </>
       )}
       {/* 아이디 찾기 */}
-      {formType === "findId" && (
+      {/* {formType === "findId" && (
         <>
           <Input id="email" type="email" name="email" placeholder="이메일" />
         </>
-      )}
+      )} */}
 
       {/* 비밀번호 재설정 */}
       {formType === "findPw" && (

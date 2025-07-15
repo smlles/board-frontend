@@ -19,11 +19,14 @@ const Auth = () => {
     username: ""
   });
 
-  const toggleAuth = () =>{
-    
-   const next = formType === 'login' ? 'register' : 'login'
-    navigate(`/${next}`);  
-  }   
+  const toggleAuth = () => {
+    if (formType === 'findPw') {
+      toggle('login');
+    } else {
+      const next = formType === 'login' ? 'register' : 'login';
+      navigate(`/${next}`);
+    }
+  };   
   const toggle = (type) => setFormType(type);
 
    const pathType  = location.pathname.split('/')[1];   // 'login' or 'register'
@@ -52,12 +55,12 @@ const Auth = () => {
                  {formType.includes("find") ? form["send"] : form[formType]}
               </button>
             <ToggleButton type="button" toggle={toggleAuth} >
-               {formType ==="login" ? form["register"] :form["cancle"]}
+               {formType === 'login' ? form["register"] : (formType === 'register' ? form["login"] : form["cancle"])}
             </ToggleButton>
           </div>
           {formType === "login" && (
             <div className="footer">
-              <p onClick={() => toggle("findId")}>아이디 찾기</p>
+              {/* <p onClick={() => toggle("findId")}>아이디 찾기</p> */}
               <p onClick={() => toggle("findPw")}>비밀번호 재설정</p>
             </div>
           )}

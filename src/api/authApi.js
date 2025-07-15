@@ -31,5 +31,6 @@ export const authApi = {
   login:     (data) => api.post('/login',    data),
   register:  (data) => api.post('/register', data),
   getProfile: () => api.get('/me'), // 프로필 조회 API
-  updateProfile: (data) => api.put('/me', data) // 프로필 업데이트 API
+  updateProfile: (data) => api.put('/me', data), // 프로필 업데이트 API
+  deleteAccount: () => api.delete('/me') // 회원 탈퇴 API
 };

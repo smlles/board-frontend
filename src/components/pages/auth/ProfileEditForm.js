@@ -42,6 +42,19 @@ const ProfileEditForm = ({ onClose }) => {
     }
   };
 
+  const handleDelete = async () => {
+    if (window.confirm('정말로 회원 탈퇴를 하시겠습니까? 이 작업은 되돌릴 수 없습니다.')) {
+      try {
+        await authApi.deleteAccount();
+        alert('회원 탈퇴가 완료되었습니다.');
+        onClose(); // 모달 닫기
+      } catch (error) {
+        console.error('회원 탈퇴 실패:', error);
+        alert('회원 탈퇴에 실패했습니다.');
+      }
+    }
+  };
+
   if (loading) {
     return <div>로딩 중...</div>;
   }
@@ -82,6 +95,7 @@ const ProfileEditForm = ({ onClose }) => {
       <div className="button-group">
         <Button type="submit" className="blue-btn">저장</Button>
         <Button type="button" onClick={onClose} className="grey-btn">취소</Button>
+        <Button type="button" onClick={handleDelete} className="red-btn">회원 탈퇴</Button>
       </div>
     </form>
   );

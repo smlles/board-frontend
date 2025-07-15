@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout, openProfileModal } from '../store';
 import '../styles/Header.css';
+import '../styles/auth.css';
 
 const Header = () => {
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -26,7 +27,7 @@ const Header = () => {
                 {isLoggedIn ? (
                     <>
                         <button onClick={() => dispatch(openProfileModal())} className="header-button">프로필 설정</button>
-                        <button onClick={handleLogout} className="header-button">로그아웃</button>
+                        <button onClick={handleLogout} className="red-btn">로그아웃</button>
                     </>
                 ) : (
                     <a href="/login" className="header-link">로그인</a>

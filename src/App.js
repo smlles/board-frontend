@@ -23,22 +23,26 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Header />
-        {isLoggedIn ? (
-          <Routes>
-            <Route path="/post" element={<Board />} />
-            <Route path="/post/:id" element={<Post />} />
-            <Route path="/post/write" element={<WriteAndEdit />} />
-             <Route path="/post/write/:id" element={<WriteAndEdit />} />
-            <Route path="*" element={<Navigate to="/post" replace />} />
-          </Routes>
-        ) : (
-          <Routes>
-            <Route path="/login" element={<Auth initialType="login" />} />
-            <Route path="/register" element={<Auth initialType="register" />} />
-            <Route path="*" element={<Navigate to="/login" replace />} />
-          </Routes>
-        )}
-        {/* 프로필 모달을 App 컴포넌트에서 전역적으로 렌더링 */}
+      
+          {/* {isLoggedIn ? ( */}
+            <Routes>
+              <Route path="/post" element={<Board />} />
+              <Route path="/post/:id" element={<Post />} />
+              <Route path="/post/write" element={<WriteAndEdit />} />
+              <Route path="/post/write/:id" element={<WriteAndEdit />} />
+              <Route path="*" element={<Navigate to="/post" replace />} />
+            
+            {/* </Routes> */}
+          {/* ) : ( */}
+          {/* <Routes> */}
+            
+              <Route path="/login" element={<Auth />} />
+              <Route path="/register" element={<Auth />} />
+              <Route path="*" element={<Navigate to="/login" replace />} />
+            
+            </Routes>
+          {/* )} */}
+        
         <Modal isOpen={isProfileModalOpen} onClose={handleCloseProfileModal}>
           <ProfileEditForm onClose={handleCloseProfileModal} />
         </Modal>
@@ -48,3 +52,4 @@ function App() {
 }
 
 export default App;
+

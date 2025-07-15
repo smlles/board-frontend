@@ -9,6 +9,7 @@ import ProfileEditForm from "../auth/ProfileEditForm"; // ProfileEditForm 컴포
 import { authApi } from "../../../api/authApi";
 import "../../../styles/board.css"; // board.css import
 import "../../../styles/auth.css"; // auth.css import
+import { formatPostDate } from "../../../utils/dateUtils";
 
 const Board = () => {
   const navigate = useNavigate();
@@ -82,7 +83,7 @@ const Board = () => {
                 {item.title}
               </td>
               <td data-label="작성자">{currentUser && item.author === currentUser.email ? currentUser.username : item.author.split('@')[0]}</td>
-              <td data-label="작성일">{item.createDate}</td>
+              <td data-label="작성일">{formatPostDate(item.createDate)}</td>
               <td data-label="조회">{item.view}</td>
             </tr>
           ))}

@@ -136,7 +136,9 @@ const AuthForm = ({ formType, children }) => {
       {/* 비밀번호 재설정 */}
       {formType === "findPw" && (
         <>
-          <Input id="id" type="text" name="id" placeholder="아이디" />
+          <p>혹시 아이디가 기억나지 않나요?</p>
+          <p>아이디는 이메일입니다.</p>
+         
           <Input id="email" type="email" name="email" placeholder="이메일" />
         </>
       )}

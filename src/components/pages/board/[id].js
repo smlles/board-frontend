@@ -6,7 +6,7 @@ import { Viewer } from "@toast-ui/react-editor";
 import { boardApi } from "../../../api/boardApi";
 import { authApi } from "../../../api/authApi";
 import "../../../styles/board.css"; // board.css import
-
+import { formatPostDate } from "../../../utils/dateUtils";
 
 const Post=({deletePost})=>{
  
@@ -101,7 +101,7 @@ const Post=({deletePost})=>{
       <div className="meta-right">
         <span>좋아요: {post.likes}</span>
         <span>작성 시간 </span>
-        <span>{post.createDate}</span>
+        <span>{formatPostDate(post.createDate)}</span>
       </div>
     </div>
     <div className="post-content">

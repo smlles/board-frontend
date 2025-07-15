@@ -10,6 +10,7 @@ import { authApi } from "../../../api/authApi";
 import "../../../styles/board.css"; // board.css import
 import "../../../styles/auth.css"; // auth.css import
 import { formatPostDate } from "../../../utils/dateUtils";
+import Lucide from "../../common/Lucide"; // Lucide 컴포넌트 임포트
 
 const Board = () => {
   const navigate = useNavigate();

@@ -6,6 +6,7 @@ import { form } from "../../../constants/form";
 import ToggleButton from "../../common/Button/ToggleButton";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import Lucide from "../../common/Lucide"; // Lucide 컴포넌트 임포트
 
 
 const Auth = () => {
@@ -52,7 +53,7 @@ const Auth = () => {
         <AuthForm formType={formType}>
           <div className="button-group">
               <button className="blue-btn">
-                 {formType.includes("find") ? form["send"] : form[formType]}
+                 <Lucide name="LogIn" size={16} /> {formType.includes("find") ? form["send"] : form[formType]}
               </button>
             <ToggleButton type="button" toggle={toggleAuth} >
                {formType === 'login' ? form["register"] : (formType === 'register' ? form["login"] : form["cancle"])}
@@ -61,7 +62,7 @@ const Auth = () => {
           {formType === "login" && (
             <div className="footer">
               {/* <p onClick={() => toggle("findId")}>아이디 찾기</p> */}
-              <p onClick={() => toggle("findPw")}>비밀번호 재설정</p>
+              <p onClick={() => toggle("findPw")}><Lucide name="HelpCircle" size={16} /> 비밀번호 재설정</p>
             </div>
           )}
         </AuthForm>

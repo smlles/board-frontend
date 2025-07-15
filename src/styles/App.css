@@ -1,4 +1,8 @@
-
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* 최소 화면 높이를 차지하도록 */
+}
 
 .App-logo {
   height: 40vmin;

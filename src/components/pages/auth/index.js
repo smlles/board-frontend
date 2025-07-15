@@ -45,22 +45,24 @@ const Auth = () => {
 
 
   return (
-      <AuthForm formType={formType}>
-        <div className="button-group">
-            <button className="blue-btn">
-               {formType.includes("find") ? form["send"] : form[formType]}
-            </button>
-          <ToggleButton type="button" toggle={toggleAuth} >
-             {formType ==="login" ? form["register"] :form["cancle"]}
-          </ToggleButton>
-        </div>
-        {formType === "login" && (
-          <div className="footer">
-            <p onClick={() => toggle("findId")}>아이디 찾기</p>
-            <p onClick={() => toggle("findPw")}>비밀번호 재설정</p>
+      <div className="auth-wrapper">
+        <AuthForm formType={formType}>
+          <div className="button-group">
+              <button className="blue-btn">
+                 {formType.includes("find") ? form["send"] : form[formType]}
+              </button>
+            <ToggleButton type="button" toggle={toggleAuth} >
+               {formType ==="login" ? form["register"] :form["cancle"]}
+            </ToggleButton>
           </div>
-        )}
-      </AuthForm>
+          {formType === "login" && (
+            <div className="footer">
+              <p onClick={() => toggle("findId")}>아이디 찾기</p>
+              <p onClick={() => toggle("findPw")}>비밀번호 재설정</p>
+            </div>
+          )}
+        </AuthForm>
+      </div>
   );
 };
 

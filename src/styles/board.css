@@ -1,0 +1,369 @@
+
+.board-container {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 960px; /* auth.css보다 넓게 설정 */
+    margin: 40px auto; /* 중앙 정렬 및 상하 여백 */
+}
+
+.board-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.board-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.board-container th, .board-container td {
+    border: 1px solid #eee;
+    padding: 12px;
+    text-align: left;
+}
+
+.board-container th {
+    background-color: #f8f8f8;
+    font-weight: bold;
+    color: #555;
+}
+
+.board-container tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.board-container tbody tr:hover {
+    background-color: #f0f0f0;
+}
+
+.board-container .button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: flex-end; /* 버튼들을 오른쪽으로 정렬 */
+}
+
+.board-container .button-group button {
+    padding: 10px 15px;
+    font-size: 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.board-container .blue-btn {
+    background-color: #3498db;
+    color: white;
+}
+
+.board-container .blue-btn:hover {
+    background-color: #2980b9;
+}
+
+.board-container .grey-btn {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.board-container .grey-btn:hover {
+    background-color: #d5d5d5;
+}
+
+/* PostDetail.js (게시글 상세) 스타일 */
+.post-detail-container {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 960px;
+    margin: 40px auto;
+}
+
+.post-detail-container .post-title {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.post-detail-container .post-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    color: #777;
+    font-size: 14px;
+}
+
+.post-detail-container .post-meta .meta-left span,
+.post-detail-container .post-meta .meta-right span {
+    margin-right: 15px;
+}
+
+.post-detail-container .post-content {
+    min-height: 200px;
+    padding: 20px 0;
+    line-height: 1.8;
+    color: #444;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 30px;
+}
+
+.post-detail-container .post-button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between; /* 목록 버튼과 나머지 버튼 그룹 분리 */
+}
+
+.post-detail-container .post-button-group .right-buttons {
+    display: flex;
+    gap: 10px; /* 나머지 버튼들 사이의 간격 */
+}
+
+.post-detail-container .post-button-group button {
+    padding: 10px 15px;
+    font-size: 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.post-detail-container .post-button-group .back-button {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.post-detail-container .post-button-group .back-button:hover {
+    background-color: #d5d5d5;
+}
+
+.post-detail-container .post-button-group .delete-button {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.post-detail-container .post-button-group .delete-button:hover {
+    background-color: #c0392b;
+}
+
+.post-detail-container .post-button-group .write-button {
+    background-color: #3498db;
+    color: white;
+}
+
+.post-detail-container .post-button-group .write-button:hover {
+    background-color: #2980b9;
+}
+
+/* WriteAndEdit.js (게시글 작성/수정) 스타일 */
+.write-post-container {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 960px;
+    margin: 40px auto;
+}
+
+.write-post-container h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.write-post-container .write-post-input {
+    width: calc(100% - 20px); /* 패딩 고려 */
+    padding: 10px;
+    font-size: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    margin-left: 10px; /* 중앙 정렬을 위해 */
+    margin-right: 10px; /* 중앙 정렬을 위해 */
+}
+
+.write-post-container .toastui-editor-ww-container {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.write-post-container .write-button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.write-post-container .write-button-group button {
+    padding: 10px 15px;
+    font-size: 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.write-post-container .write-button-group .cancel-button {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.write-post-container .write-button-group .cancel-button:hover {
+    background-color: #d5d5d5;
+}
+
+.write-post-container .write-button-group .submit-button {
+    background-color: #3498db;
+    color: white;
+}
+
+.write-post-container .write-button-group .submit-button:hover {
+    background-color: #2980b9;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .board-container,
+    .post-detail-container,
+    .write-post-container {
+        padding: 20px;
+        margin: 20px auto;
+        max-width: 90%;
+    }
+
+    .board-container h2,
+    .post-detail-container .post-title,
+    .write-post-container h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .board-container th,
+    .board-container td {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .post-detail-container .post-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        font-size: 13px;
+    }
+
+    .post-detail-container .post-meta .meta-left span,
+    .post-detail-container .post-meta .meta-right span {
+        margin-right: 10px;
+        margin-bottom: 5px;
+    }
+
+    .board-container .button-group,
+    .post-detail-container .post-button-group,
+    .write-post-container .write-button-group {
+        flex-direction: column;
+        gap: 8px;
+        align-items: stretch; /* 버튼들이 전체 너비를 차지하도록 */
+    }
+
+    .board-container .button-group button,
+    .post-detail-container .post-button-group button,
+    .write-post-container .write-button-group button {
+        width: 100%;
+    }
+
+    .write-post-container .write-post-input {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .board-container,
+    .post-detail-container,
+    .write-post-container {
+        padding: 15px;
+        margin: 15px auto;
+        max-width: 95%;
+    }
+
+    .board-container h2,
+    .post-detail-container .post-title,
+    .write-post-container h1 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .board-container th,
+    .board-container td {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .post-detail-container .post-meta {
+        font-size: 12px;
+    }
+
+    .write-post-container .write-post-input {
+        font-size: 16px;
+    }
+
+    /* 테이블 셀을 블록으로 표시하여 스크롤 없이 내용 확인 가능 */
+    .board-container table,
+    .board-container thead,
+    .board-container tbody,
+    .board-container th,
+    .board-container td,
+    .board-container tr {
+        display: block;
+    }
+
+    .board-container thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    .board-container tr {
+        margin-bottom: 15px;
+        border: 1px solid #eee;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .board-container td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+    }
+
+    .board-container td:before {
+        position: absolute;
+        top: 0;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+        content: attr(data-label);
+    }
+
+    /* 각 셀에 대한 레이블 추가 (index.js에서 data-label 속성 추가 필요) */
+    .board-container td:nth-of-type(1):before { content: "번호"; }
+    .board-container td:nth-of-type(2):before { content: "제목"; }
+    .board-container td:nth-of-type(3):before { content: "작성자"; }
+    .board-container td:nth-of-type(4):before { content: "작성일"; }
+    .board-container td:nth-of-type(5):before { content: "조회"; }
+}

@@ -1,4 +1,4 @@
- * {
+* {
       box-sizing: border-box;
     }
 
@@ -7,12 +7,14 @@
       padding: 0;
       font-family: 'Noto Sans KR', sans-serif;
       background: #f4f6f8;
+    }
+
+    .auth-wrapper {
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      flex-grow: 1; /* App.css의 .App flex-direction: column에 맞춰 남은 공간을 채움 */
     }
-
  
     .form-group {
        background: white;

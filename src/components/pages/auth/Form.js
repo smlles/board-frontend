@@ -15,6 +15,8 @@ const AuthForm = ({ formType, children }) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [registrationSuccessMessage, setRegistrationSuccessMessage] = useState('');
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
 
   // 비밀번호 유효성 검사 함수
   const validatePassword = (pwd, confPwd) => {
@@ -50,6 +52,21 @@ const AuthForm = ({ formType, children }) => {
           setPasswordError(error);
           return; // 폼 제출 중단
         }
+      } else if (formType === 'findPw') {
+        try {
+          const response = await authApi.resetPassword({ email: formData.email });
+           console.log(response.data);
+          const { tempPassword } = response.data;
+         
+          setMessage(`임시 비밀번호: ${tempPassword}. 이 비밀번호로 로그인 후 마이페이지에서 비밀번호를 재설정해주세요.`);
+          alert(`임시 비밀번호: ${tempPassword}. 이 비밀번호로 로그인 후 마이페이지에서 비밀번호를 재설정해주세요.`);
+          setTimeout(() => {
+            navigate('/login');
+          }, 5000); // 5초 후 로그인 페이지로 이동
+        } catch (err) {
+          setError('비밀번호 재설정 요청에 실패했습니다. 이메일을 확인해주세요.');
+        }
+        return; // 비밀번호 재설정 폼 제출 후 함수 종료
       }
 
       try{
@@ -91,10 +108,12 @@ const AuthForm = ({ formType, children }) => {
     <form className="form-group" onSubmit={submit}>
       <h2>{form[formType]}</h2>
       {registrationSuccessMessage && (
-        <p style={{ color: 'green', textAlign: 'center', marginBottom: '15px' }}>
+        <p className="success-message">
           {registrationSuccessMessage}
         </p>
       )}
+      {message && <p className="success-message">{message}</p>}
+      {error && <p className="error-message">{error}</p>}
       {/* 공통 필드 (로그인 & 회원가입) */}
         {["login"].includes(formType) && (
         <>
@@ -122,7 +141,7 @@ const AuthForm = ({ formType, children }) => {
             value={confirmPassword}
             onChange={handleConfirmPasswordChange}
           />
-          {passwordError && <p style={{ color: 'red', fontSize: '0.8em', marginTop: '-10px', marginBottom: '10px' }}>{passwordError}</p>}
+          {passwordError && <p className="error-message">{passwordError}</p>}
            <Input id="username" type="text" name="username" placeholder="이름"/>
         </>
       )}

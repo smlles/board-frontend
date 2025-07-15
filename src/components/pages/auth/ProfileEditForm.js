@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 // import Input from '../../common/Input'; // Input 컴포넌트 대신 일반 input 사용
 import Button from '../../common/Button/Button';
-
+import { logout } from '../../../store';
 import { authApi } from '../../../api/authApi'; // authApi 임포트
-
+import { useDispatch } from 'react-redux';
 const ProfileEditForm = ({ onClose }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [loading, setLoading] = useState(true);
+   const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -47,6 +48,7 @@ const ProfileEditForm = ({ onClose }) => {
       try {
         await authApi.deleteAccount();
         alert('회원 탈퇴가 완료되었습니다.');
+        dispatch(logout());
         onClose(); // 모달 닫기
       } catch (error) {
         console.error('회원 탈퇴 실패:', error);

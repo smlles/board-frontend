@@ -24,7 +24,7 @@ function App() {
       <BrowserRouter>
         <Header />
       
-          {/* {isLoggedIn ? ( */}
+          {isLoggedIn ? (
             <Routes>
               <Route path="/post" element={<Board />} />
               <Route path="/post/:id" element={<Post />} />
@@ -32,16 +32,16 @@ function App() {
               <Route path="/post/write/:id" element={<WriteAndEdit />} />
               <Route path="*" element={<Navigate to="/post" replace />} />
             
-            {/* </Routes> */}
-          {/* ) : ( */}
-          {/* <Routes> */}
+            </Routes>
+           ) : ( 
+           <Routes> 
             
               <Route path="/login" element={<Auth />} />
               <Route path="/register" element={<Auth />} />
               <Route path="*" element={<Navigate to="/login" replace />} />
             
             </Routes>
-          {/* )} */}
+           )} 
         
         <Modal isOpen={isProfileModalOpen} onClose={handleCloseProfileModal}>
           <ProfileEditForm onClose={handleCloseProfileModal} />

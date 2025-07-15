@@ -15,7 +15,7 @@ const Header = () => {
     return (
         <header className="header">
             <div className="logo">
-                <a href={isLoggedIn ? "/post" : "/login"}>My Board</a>
+                <a href={isLoggedIn ? "/post" : "/login"}>이름 정하기가 너무 어렵다.</a>
             </div>
             <nav className="nav">
                 <ul>

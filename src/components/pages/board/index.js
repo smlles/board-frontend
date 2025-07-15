@@ -97,6 +97,8 @@ const Board = () => {
         <Button type="button" onClick={goWritePost} className="blue-btn">
           글쓰기
         </Button>
+           {/* 프로필 모달 */}
+      {/* 모달은 App.js에서 전역적으로 관리 */}
         <Button type="button" onClick={profileModal} className="grey-btn">
           프로필
         </Button>
@@ -125,8 +127,7 @@ const Board = () => {
         </select>
       </div>
 
-      {/* 프로필 모달 */}
-      {/* 모달은 App.js에서 전역적으로 관리 */}
+   
     </div>
   );
 };

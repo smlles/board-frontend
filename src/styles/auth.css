@@ -107,3 +107,21 @@
     .form-group .footer p:hover {
       color: #3498db;
     }
+
+    .form-group p {
+      text-align: center;
+    }
+
+    .success-message, .error-message {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 0.9em;
+    }
+
+    .success-message {
+      color: green;
+    }
+
+    .error-message {
+      color: red;
+    }

@@ -22,9 +22,13 @@ const Board = () => {
   const [postsPerPage, setPostsPerPage] = useState(5);
   const [totalPosts, setTotalPosts] = useState(0);
 
+
+
+  // 로그아웃 함수 
   const logoutHandler = () => {
     dispatch(logout());
   };
+  // 글쓰기로 가라
   const goWritePost=()=>{
     navigate('/post/write')
   }
@@ -98,7 +102,7 @@ const Board = () => {
           글쓰기
         </Button>
            {/* 프로필 모달 */}
-      {/* 모달은 App.js에서 전역적으로 관리 */}
+            {/* 모달은 App.js에서 받아옴 */}
         <Button type="button" onClick={profileModal} className="grey-btn">
           프로필
         </Button>

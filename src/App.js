@@ -31,15 +31,12 @@ function App() {
               <Route path="/post/write" element={<WriteAndEdit />} />
               <Route path="/post/write/:id" element={<WriteAndEdit />} />
               <Route path="*" element={<Navigate to="/post" replace />} />
-            
             </Routes>
            ) : ( 
            <Routes> 
-            
               <Route path="/login" element={<Auth />} />
               <Route path="/register" element={<Auth />} />
               <Route path="*" element={<Navigate to="/login" replace />} />
-            
             </Routes>
            )} 
         

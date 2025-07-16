@@ -54,7 +54,7 @@ const Post=({deletePost})=>{
   }
 // 글쓰기 화면으로
   const GoWritePost=()=>{
-  navigate('/write')
+  navigate('/post/write')
 }
 // 수정 화면으로
  const GoEditPost=()=>{

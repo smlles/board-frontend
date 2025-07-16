@@ -102,10 +102,10 @@ const Write=()=>{
         />
         {/* 버튼들 */}
       <div className="write-button-group">
-          {/* 취소버튼 -> 메인으로 보냄 */}
+          {/* 취소버튼 -> 이전화면으로 보냄 */}
         <button 
           className="cancel-button" 
-          onClick={()=>navigate('/')}>취소</button>
+          onClick={()=>navigate(-1)}>취소</button>
           {/* 등록버튼, 등록 후 메인으로 보냄 */}
         <button 
           className="submit-button"

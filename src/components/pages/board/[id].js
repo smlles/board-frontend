@@ -94,7 +94,8 @@ const Post=({deletePost})=>{
     <h1 className="post-title">{post.title}</h1>
     <div className="post-meta">
       <div className="meta-left">
-        <span>작성자 : {post.author}</span>
+        <span>작성자 : {post.author?.split('@')[0]}</span>
+        
         <span>댓글 : {post.comments}</span>
         <span>조회수 : {post.view}</span>
       </div>

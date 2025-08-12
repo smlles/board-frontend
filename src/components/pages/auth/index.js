@@ -53,7 +53,7 @@ const Auth = () => {
         <AuthForm formType={formType}>
           <div className="button-group">
               <button className="blue-btn">
-                 <Lucide name="LogIn" size={16} /> {formType.includes("find") ? form["send"] : form[formType]}
+                 <Lucide name={formType.includes("find")?"LogIn":"send"} size={16} /> {formType.includes("find") ? form["send"] : form[formType]}
               </button>
             <ToggleButton type="button" toggle={toggleAuth} >
                {formType === 'login' ? form["register"] : (formType === 'register' ? form["login"] : form["cancle"])}

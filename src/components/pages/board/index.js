@@ -87,7 +87,7 @@ const Board = () => {
               >
                 {item.title}
               </td>
-              <td data-label="작성자">{currentUser && item.author === currentUser.email ? currentUser.username : item.author.split('@')[0]}</td>
+              <td data-label="작성자">{item.author}</td>
               <td data-label="작성일">{formatPostDate(item.createDate)}</td>
               <td data-label="조회">{item.view}</td>
             </tr>

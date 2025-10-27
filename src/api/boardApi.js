@@ -30,7 +30,7 @@ export const boardApi = {
   createPost: (data) => axiosInstance.post('/api/board', data),
 
   // 글 목록
-  getPosts: () => axiosInstance.get('/api/board'),
+  getPosts: () => axiosInstance.get('/api/board/boards'),
 
   // 단일 글 조회
   getPostById: (id) => axiosInstance.get(`/api/board/${id}`),
@@ -40,4 +40,7 @@ export const boardApi = {
 
   // 글 삭제
   deletePost: (id) => axiosInstance.delete(`/api/board/${id}`),
+
+
+
 };

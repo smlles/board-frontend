@@ -403,3 +403,95 @@
     .board-container td:nth-of-type(4):before { content: "작성일"; }
     .board-container td:nth-of-type(5):before { content: "조회"; }
 }
+
+/* ================== 댓글 섹션 스타일 ================== */
+.comments-section {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  padding-bottom: 30px;
+}
+
+.comments-section h3 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.comment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.comment-item {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  position: relative;
+}
+
+.comment-item strong {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.comment-item p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.comment-item .delete-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.comment-item .delete-button:hover {
+  opacity: 1;
+}
+
+.comment-input {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.comment-input textarea {
+  flex-grow: 1;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  resize: vertical;
+  min-height: 80px;
+}
+
+.comment-input button {
+  padding: 12px 20px;
+  font-size: 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #3498db;
+  color: white;
+  transition: background 0.3s ease;
+}
+
+.comment-input button:hover {
+  background-color: #2980b9;
+}

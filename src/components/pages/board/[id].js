@@ -7,6 +7,7 @@ import { boardApi } from "../../../api/boardApi";
 import { authApi } from "../../../api/authApi";
 import "../../../styles/board.css"; // board.css import
 import { formatPostDate } from "../../../utils/dateUtils";
+import { commentApi } from "../../../api/commentApi";
 
 const Post=({deletePost})=>{
  
@@ -17,32 +18,43 @@ const Post=({deletePost})=>{
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [comments, setComments] = useState([]);       // 댓글 목록
+  const [newComment, setNewComment] = useState("");   // 입력창 내용
+
+   // ================== 데이터 불러오기 ==================
+  const fetchPost = async () => {
+    try {
+      const postRes = await boardApi.getPostById(id);
+      setPost(postRes.data.data[0]);
+
+      try {
+        const userRes = await authApi.getProfile();
+        setCurrentUser(userRes.data);
+      } catch {
+        console.log("로그인하지 않은 사용자");
+      }
+
+      await fetchComments();
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchComments = async () => {
+    try {
+      const res = await commentApi.getCommentsByBoardId(id);
+      setComments(res.data.data);
+    } catch (err) {
+      console.error("댓글 조회 실패:", err);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // 글 목록 불러오기 
-        const postResponse = await boardApi.getPostById(id);
-        setPost(postResponse.data.data[0]);
-
-        // 사용자 정보 받기 (로그인 안했으면 여기서 짤림)
-        try {
-          const userResponse = await authApi.getProfile();
-          setCurrentUser(userResponse.data);
-        } catch (userError) {
-          // 로그인하지 않은 사용자는 여기서 오류가 발생하지만, 정상적인 상황입니다.
-          console.log("사용자 정보를 가져오는데 실패했습니다 (로그인되지 않았을 수 있습니다).");
-        }
-
-      } catch (err) {
-        // 글 목록 부터 실패했을 떄 
-        setError(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
+    fetchPost();
   }, [id]);
+
 
   if (loading) return <div>로딩 중...</div>;
   if (error) return <div>오류 발생: {error.message}</div>;
@@ -87,6 +99,40 @@ const Post=({deletePost})=>{
     }
   }
  };
+// 댓글 관련 이벤트
+  const handleAddComment = async () => {
+    if (!newComment.trim()) return alert("댓글을 입력하세요.");
+
+    const data = {
+      boardId: id,
+      content: newComment,
+      author: currentUser.username,
+    };
+
+    try {
+      await commentApi.createComment(data);
+      setNewComment("");
+      fetchComments();
+    } catch (err) {
+      console.error("댓글 작성 실패:", err);
+      alert("댓글 작성에 실패했습니다.");
+    }
+  };
+  const handleDeleteComment = async (commentId, author) => {
+    if (!currentUser || currentUser.username !== author)
+      return alert("삭제 권한이 없습니다.");
+
+    if (!window.confirm("정말 삭제하시겠습니까?")) return;
+
+    try {
+      await commentApi.deleteComment(commentId);
+      fetchComments();
+    } catch (err) {
+      console.error("댓글 삭제 실패:", err);
+      alert("댓글 삭제에 실패했습니다.");
+    }
+  };
+
 
 
   return(
@@ -95,8 +141,7 @@ const Post=({deletePost})=>{
     <div className="post-meta">
       <div className="meta-left">
         <span>작성자 : {post.author?.split('@')[0]}</span>
-        
-        <span>댓글 : {post.comments}</span>
+        <span>댓글 : {post.commentCount}</span>
         <span>조회수 : {post.view}</span>
       </div>
       <div className="meta-right">
@@ -108,13 +153,48 @@ const Post=({deletePost})=>{
     <div className="post-content">
         <Viewer initialValue={post.description} />
     </div>
+         {/* ================== 댓글 섹션 ================== */}
+      <div className="comments-section">
+        <h3>💬 댓글</h3>
+        <div className="comment-list">
+          {comments.length > 0 ? (
+            comments.map((c) => (
+              <div key={c.id} className="comment-item">
+                <strong>{c.author}</strong>
+                <p>{c.content}</p>
+                {currentUser && currentUser.username === c.author && (
+                  <button
+                    className="delete-button"
+                    onClick={() => handleDeleteComment(c.id, c.author)}
+                  >
+                    삭제
+                  </button>
+                )}
+              </div>
+            ))
+          ) : (
+            <p>아직 댓글이 없습니다.</p>
+          )}
+           {currentUser && (
+          <div className="comment-input">
+            <textarea
+              placeholder="댓글을 입력하세요..."
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+            />
+            <button onClick={handleAddComment}>등록</button>
+          </div>
+        )}
+      </div>
+      </div>
+    
         {/* 버튼 모음 */}
     <div className="post-button-group">
         {/* 목록으로 */}
       <button className="back-button" onClick={GoToBoardList}>목록으로</button>
         {/* 삭제하기 */}
         <div className="right-buttons">
-      {currentUser && post.author === currentUser.email && (
+      {currentUser && post.author === currentUser.username && (
         <>
           <button className="delete-button" onClick={DeletePost}>삭제</button>
           <button className="write-button" onClick={() => GoEditPost()}>수정</button>
